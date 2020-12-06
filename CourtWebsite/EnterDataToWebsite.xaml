@@ -1,0 +1,269 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="EnterDataToWebsite" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="792,1113" sap2010:WorkflowViewState.IdRef="EnterDataToWebsite_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="EnterDataToWebsite" sap:VirtualizedContainerService.HintSize="477,1048" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe OSCN'" sap:VirtualizedContainerService.HintSize="435,956" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="0c5fe8ae0d8fcb3a9e05feed073ca1ff" Selector="&lt;html app='chrome.exe' title='OSCN Docket Search' /&gt;">
+      <ui:BrowserScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="401,810" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select county" sap:VirtualizedContainerService.HintSize="359,134" sap2010:WorkflowViewState.IdRef="SelectItem_1" Item="Appellate Courts">
+              <ui:SelectItem.Items>
+                <scg:List x:TypeArguments="x:String" Capacity="50">
+                  <x:String>All Oklahoma Courts*</x:String>
+                  <x:String>Adair County District Court</x:String>
+                  <x:String>Alfalfa County District Court</x:String>
+                  <x:String>Appellate Courts</x:String>
+                  <x:String>Atoka County District Court</x:String>
+                  <x:String>Beaver County District Court</x:String>
+                  <x:String>Beckham County District Court</x:String>
+                  <x:String>Blaine County District Court</x:String>
+                  <x:String>Bryan County District Court</x:String>
+                  <x:String>Caddo County District Court</x:String>
+                  <x:String>Canadian County District Court</x:String>
+                  <x:String>Carter County District Court</x:String>
+                  <x:String>Cherokee County District Court</x:String>
+                  <x:String>Choctaw County District Court</x:String>
+                  <x:String>Cimarron County District Court</x:String>
+                  <x:String>Cleveland County District Court</x:String>
+                  <x:String>Coal County District Court</x:String>
+                  <x:String>Comanche County District Court</x:String>
+                  <x:String>Cotton County District Court</x:String>
+                  <x:String>Craig County District Court</x:String>
+                  <x:String>Creek County District Court</x:String>
+                  <x:String>Creek (Bristow) District Court</x:String>
+                  <x:String>Creek (Drumright) District Court</x:String>
+                  <x:String>Custer County District Court</x:String>
+                  <x:String>Delaware County District Court</x:String>
+                  <x:String>Dewey County District Court</x:String>
+                  <x:String>Ellis County District Court</x:String>
+                  <x:String>Garfield County District Court</x:String>
+                  <x:String>Garvin County District Court</x:String>
+                  <x:String>Grady County District Court</x:String>
+                  <x:String>Grant County District Court</x:String>
+                  <x:String>Greer County District Court</x:String>
+                  <x:String>Harmon County District Court</x:String>
+                  <x:String>Harper County District Court</x:String>
+                  <x:String>Haskell County District Court</x:String>
+                  <x:String>Hughes County District Court</x:String>
+                  <x:String>Jackson County District Court</x:String>
+                  <x:String>Jefferson County District Court</x:String>
+                  <x:String>Johnston County District Court</x:String>
+                  <x:String>Kay County District Court</x:String>
+                  <x:String>Kay (Ponca City) District Court</x:String>
+                  <x:String>Kingfisher County District Court</x:String>
+                  <x:String>Kiowa County District Court</x:String>
+                  <x:String>Latimer County District Court</x:String>
+                  <x:String>LeFlore County District Court</x:String>
+                  <x:String>Lincoln County District Court</x:String>
+                  <x:String>Logan County District Court</x:String>
+                  <x:String>Love County District Court</x:String>
+                  <x:String>Major County District Court</x:String>
+                  <x:String>Marshall County District Court</x:String>
+                </scg:List>
+              </ui:SelectItem.Items>
+              <ui:SelectItem.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="bcdd4d82-7fb8-4536-a18f-5ae8d9417365" InformativeScreenshot="efea830e83fd3bb92343bfcc5460244a" Selector="&lt;webctrl id='dblist' tag='SELECT' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:SelectItem.Target>
+            </ui:SelectItem>
+            <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Item district court case type" sap:VirtualizedContainerService.HintSize="359,134" sap2010:WorkflowViewState.IdRef="SelectItem_2" Item="Small Claims">
+              <ui:SelectItem.Items>
+                <scg:List x:TypeArguments="x:String" Capacity="50">
+                  <x:String>All Case Types</x:String>
+                  <x:String>Anna McBride Act - Mental Health Court</x:String>
+                  <x:String>Beverage License</x:String>
+                  <x:String>Bingo License (Legacy)</x:String>
+                  <x:String>Bondsman License</x:String>
+                  <x:String>Civil Administrative</x:String>
+                  <x:String>Civil Administrative (Legacy)</x:String>
+                  <x:String>Civil Misc.</x:String>
+                  <x:String>Civil Misc. Conversion (Legacy)</x:String>
+                  <x:String>Civil relief less than $10,000</x:String>
+                  <x:String>Civil relief more than $10,000</x:String>
+                  <x:String>Closing out sale</x:String>
+                  <x:String>Cost Administration</x:String>
+                  <x:String>Criminal Felony</x:String>
+                  <x:String>Criminal Miscellaneous</x:String>
+                  <x:String>Criminal Misdemeanor</x:String>
+                  <x:String>Criminal Probable Cause</x:String>
+                  <x:String>Criminal Property Recovery</x:String>
+                  <x:String>Declined Traffic Tickets</x:String>
+                  <x:String>Family and Domestic</x:String>
+                  <x:String>Family and Domestic Miscellaneous Proceedings</x:String>
+                  <x:String>Filing of Wills</x:String>
+                  <x:String>Foreign Service Server (Legacy)</x:String>
+                  <x:String>Full Blood Proceedings</x:String>
+                  <x:String>Grand Jury/Multicounty Grand Jury</x:String>
+                  <x:String>Income Assignment</x:String>
+                  <x:String>Marriage license</x:String>
+                  <x:String>Minister's Credentials</x:String>
+                  <x:String>Miscellaneous Receipts</x:String>
+                  <x:String>Miscellaneous Receipts - Civil</x:String>
+                  <x:String>Miscellaneous Receipts - Criminal</x:String>
+                  <x:String>Miscellaneous Receipts - Family Domestic</x:String>
+                  <x:String>Miscellaneous Receipts - Probate</x:String>
+                  <x:String>Miscellaneous Receipts - Small Claims</x:String>
+                  <x:String>Notary Public (Legacy)</x:String>
+                  <x:String>Paternity</x:String>
+                  <x:String>Pool Hall</x:String>
+                  <x:String>Probate</x:String>
+                  <x:String>Probate Miscellaneous Proceedings</x:String>
+                  <x:String>Probate, Misc. (Legacy)</x:String>
+                  <x:String>Process server (Legacy)</x:String>
+                  <x:String>Process server state</x:String>
+                  <x:String>Protective Order</x:String>
+                  <x:String>Reciprocal Child Support</x:String>
+                  <x:String>Small Claims</x:String>
+                  <x:String>Statutory Bonds (Legacy)</x:String>
+                  <x:String>Surface Damage</x:String>
+                  <x:String>Tax Liens</x:String>
+                  <x:String>Traffic</x:String>
+                  <x:String>Traffic- Filed by Information (Legacy)</x:String>
+                </scg:List>
+              </ui:SelectItem.Items>
+              <ui:SelectItem.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4c94bf65-46d8-4290-aae5-acebf50dd5fe" InformativeScreenshot="31cc72ffe6e92bf23daf2b64ba404ed8" Selector="&lt;webctrl id='dcct' tag='SELECT' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:SelectItem.Target>
+            </ui:SelectItem>
+            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into case after date" sap:VirtualizedContainerService.HintSize="359,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="01/01/2020">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1642356b-ac2a-4440-b3eb-9e0535fa78d4" InformativeScreenshot="574789bdf145c29fbdfc70840b6cf401" Selector="&lt;webctrl id='fdl' tag='INPUT' type='text' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:TypeInto.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:TypeInto>
+            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into case before date" sap:VirtualizedContainerService.HintSize="359,134" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="05/01/2020">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6fa42627-dc5c-4c61-a903-f0bf4e1c78a1" InformativeScreenshot="67ca49866183c46c4f326d8f3430be4e" Selector="&lt;webctrl id='fdh' tag='INPUT' type='text' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:TypeInto.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:TypeInto>
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click go in case type" sap:VirtualizedContainerService.HintSize="359,22" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="da5d9040-1945-4364-90aa-4e274b245d35" InformativeScreenshot="1d858ba8a13d6e296db448422acb3ad5" Selector="&lt;webctrl idx='2' tag='INPUT' type='submit' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:Click>
+          </Sequence>
+        </ActivityAction>
+      </ui:BrowserScope.Body>
+    </ui:BrowserScope>
+  </Sequence>
+</Activity>
