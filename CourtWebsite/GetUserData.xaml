@@ -1,6 +1,17 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="EnterFilters" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="792,1557" sap2010:WorkflowViewState.IdRef="EnterFilters_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="EnterFilters" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="out_afterDate" Type="OutArgument(s:DateTime)" />
+    <x:Property Name="out_beforeDate" Type="OutArgument(s:DateTime)" />
+    <x:Property Name="out_CourtSelected" Type="OutArgument(x:String)" />
+    <x:Property Name="out_CaseType" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>792,1535</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>EnterFilters_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="25">
+    <scg:List x:TypeArguments="x:String" Capacity="27">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -26,10 +37,12 @@
       <x:String>System.Activities.DynamicUpdate</x:String>
       <x:String>System.Reflection</x:String>
       <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Globalization</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="24">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="48">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -56,7 +69,7 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="EnterFilters" sap:VirtualizedContainerService.HintSize="376,1492" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="EnterFilters" sap:VirtualizedContainerService.HintSize="376,1470" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="CourtSelected" />
       <Variable x:TypeArguments="x:String" Name="CaseType" />
@@ -68,27 +81,53 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InputDialog OptionsString="{x:Null}" DisplayName="Input Dialog county" sap:VirtualizedContainerService.HintSize="334,296" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Please Select County or Court" Options="[{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;}]" Title="County or Court">
+    <ui:InputDialog OptionsString="{x:Null}" DisplayName="Input Dialog county" sap:VirtualizedContainerService.HintSize="334,291" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Please Select County or Court" Options="[{&quot;Appellate Courts&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;}]" Title="County or Court">
       <ui:InputDialog.Result>
-        <OutArgument x:TypeArguments="x:String">[CourtSelected]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[out_CourtSelected]</OutArgument>
       </ui:InputDialog.Result>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:InputDialog>
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Enterted data---&quot;+CourtSelected]" />
-    <ui:InputDialog OptionsString="{x:Null}" DisplayName="Input Dialog Case type" sap:VirtualizedContainerService.HintSize="334,296" sap2010:WorkflowViewState.IdRef="InputDialog_2" IsPassword="False" Label="Please Enter District Court Case type " Options="[{&quot;Small Claims&quot;}]" Title="District Court Case type">
+    <ui:InputDialog OptionsString="{x:Null}" DisplayName="Input Dialog Case type" sap:VirtualizedContainerService.HintSize="334,291" sap2010:WorkflowViewState.IdRef="InputDialog_2" IsPassword="False" Label="Please Enter District Court Case type " Options="[{&quot;Small Claims&quot;}]" Title="District Court Case type">
       <ui:InputDialog.Result>
-        <OutArgument x:TypeArguments="x:String">[CaseType]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[out_CaseType]</OutArgument>
       </ui:InputDialog.Result>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:InputDialog>
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;Enterted data---&quot;+CaseType]" />
-    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,242" sap2010:WorkflowViewState.IdRef="InputDialog_3" IsPassword="False" Label="Enter Cases Filed After Date in (ex: 01/01/2020) Format" Title="Cases Filed After Date">
+    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,238" sap2010:WorkflowViewState.IdRef="InputDialog_3" IsPassword="False" Label="Enter Cases Filed After Date in (ex: MM/DD/YYYY) Format" Title="Cases Filed After Date">
       <ui:InputDialog.Result>
         <OutArgument x:TypeArguments="x:String">[DateAfter]</OutArgument>
       </ui:InputDialog.Result>
     </ui:InputDialog>
-    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,242" sap2010:WorkflowViewState.IdRef="InputDialog_4" IsPassword="False" Label="Enter Cases Filed Before Date in (ex: 01/01/2020) Format" Title="Cases Filed Before Date">
+    <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="s:DateTime">[out_afterDate]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact(DateAfter,"mm/dd/yyyy",CultureInfo.InvariantCulture)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,238" sap2010:WorkflowViewState.IdRef="InputDialog_4" IsPassword="False" Label="Enter Cases Filed Before Date in (ex: MM/DD/YYYY) Format" Title="Cases Filed Before Date">
       <ui:InputDialog.Result>
         <OutArgument x:TypeArguments="x:String">[DateBefore]</OutArgument>
       </ui:InputDialog.Result>
     </ui:InputDialog>
+    <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="s:DateTime">[out_beforeDate]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact(DateBefore,"mm/dd/yyyy",CultureInfo.InvariantCulture)]</InArgument>
+      </Assign.Value>
+    </Assign>
   </Sequence>
 </Activity>
