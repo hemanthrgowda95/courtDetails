@@ -3,9 +3,10 @@
   "description": "naviagte to court website and scrape case details using filters\r\n",
   "main": "Main.xaml",
   "dependencies": {
-    "UiPath.Excel.Activities": "[2.9.3]",
+    "UiPath.Excel.Activities": "[2.9.4-preview]",
+    "UiPath.Mail.Activities": "[1.9.4-preview]",
     "UiPath.System.Activities": "[20.10.1]",
-    "UiPath.UIAutomation.Activities": "[20.10.6]"
+    "UiPath.UIAutomation.Activities": "[20.10.8]"
   },
   "webServices": [],
   "entitiesStores": [],

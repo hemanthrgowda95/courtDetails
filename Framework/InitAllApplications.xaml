@@ -1,14 +1,16 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Initialize_Applications" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="out_Data" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="out_CourtSelected" Type="OutArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>792,2253</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>792,1743</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="56">
+    <scg:List x:TypeArguments="x:String" Capacity="30">
       <x:String>System.Activities.XamlIntegration</x:String>
       <x:String>System.Activities.Validation</x:String>
       <x:String>System.Activities</x:String>
@@ -42,7 +44,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="29">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="58">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -70,22 +72,18 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="556,2188" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="454,1678" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:DateTime" Name="beforeDate" />
       <Variable x:TypeArguments="s:DateTime" Name="afterDate" />
       <Variable x:TypeArguments="x:String" Name="courtSelected" />
       <Variable x:TypeArguments="x:String" Name="caseType" />
-      <Variable x:TypeArguments="x:String" Name="data" />
-      <Variable x:TypeArguments="sd:DataTable" Name="FinalDataTable">
-        <Variable.Default>
-          <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="New System.Data.DataTable" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="FinalDataTable" />
       <Variable x:TypeArguments="sd:DataTable" Name="tempDataTable" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
@@ -94,9 +92,9 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log message (Initialize applications)" sap:VirtualizedContainerService.HintSize="514,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Opening applications...&quot;]" />
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="514,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="Init all applications" />
-    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetUserData workflow" sap:VirtualizedContainerService.HintSize="514,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="CourtWebsite\GetUserData.xaml">
+    <ui:LogMessage DisplayName="Log message (Initialize applications)" sap:VirtualizedContainerService.HintSize="412,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Opening applications...&quot;]" />
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="412,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="Init all applications" />
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetUserData workflow" sap:VirtualizedContainerService.HintSize="412,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="CourtWebsite\GetUserData.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <OutArgument x:TypeArguments="s:DateTime" x:Key="out_afterDate">
           <mva:VisualBasicReference x:TypeArguments="s:DateTime" ExpressionText="afterDate" />
@@ -105,14 +103,14 @@
           <mva:VisualBasicReference x:TypeArguments="s:DateTime" ExpressionText="beforeDate" />
         </OutArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="out_CourtSelected">
-          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="courtSelected" />
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="out_CourtSelected" />
         </OutArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="out_CaseType">
           <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="caseType" />
         </OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NavigateToCourtWebSite workflow" sap:VirtualizedContainerService.HintSize="514,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="CourtWebsite\NavigateToCourtWebSite.xaml">
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NavigateToCourtWebSite workflow" sap:VirtualizedContainerService.HintSize="412,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="CourtWebsite\NavigateToCourtWebSite.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:InvokeWorkflowFile.Arguments>
@@ -123,20 +121,27 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
-    <ui:InterruptibleDoWhile Condition="[afterDate&lt;=beforeDate]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="514,1366" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+    <ui:InterruptibleDoWhile Condition="[afterDate&lt;=beforeDate]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="412,908" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
       <ui:InterruptibleDoWhile.Body>
-        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="478,1201" sap2010:WorkflowViewState.IdRef="Sequence_10">
+        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,743" sap2010:WorkflowViewState.IdRef="Sequence_10">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="436,61" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="[&quot;after date entering is&quot;+afterDate.ToString(&quot;MM/dd/yyyy&quot;)]" />
-          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke EnterDataToWebsite workflow" sap:VirtualizedContainerService.HintSize="436,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="CourtWebsite\EnterDataToWebsite.xaml">
+          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="[&quot;after date entering is&quot;+afterDate.ToString(&quot;MM/dd/yyyy&quot;)]" />
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke EnterDataToWebsite workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="CourtWebsite\EnterDataToWebsite.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="s:DateTime" x:Key="in_beforeDate">[beforeDate]</InArgument>
-              <InArgument x:TypeArguments="s:DateTime" x:Key="in_AfterDate">[afterDate]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_County">[courtSelected]</InArgument>
+              <InArgument x:TypeArguments="s:DateTime" x:Key="in_beforeDate">
+                <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="beforeDate" />
+              </InArgument>
+              <InArgument x:TypeArguments="s:DateTime" x:Key="in_AfterDate">
+                <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="afterDate" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_County">
+                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="out_CourtSelected" />
+              </InArgument>
             </ui:InvokeWorkflowFile.Arguments>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -145,11 +150,9 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:InvokeWorkflowFile>
-          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetData workflow" sap:VirtualizedContainerService.HintSize="436,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="CourtWebsite\GetData.xaml">
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetData workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="CourtWebsite\GetData.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_TempDataTable">
-                <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="tempDataTable" />
-              </OutArgument>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_TempDataTable">[tempDataTable]</OutArgument>
             </ui:InvokeWorkflowFile.Arguments>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -158,56 +161,48 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:InvokeWorkflowFile>
-          <ui:JoinDataTables DataTable1="[FinalDataTable]" DataTable2="[tempDataTable]" DisplayName="Join Data Tables" sap:VirtualizedContainerService.HintSize="436,59" sap2010:WorkflowViewState.IdRef="JoinDataTables_3" JoinType="Left" OutputDataTable="[FinalDataTable]">
-            <ui:JoinDataTables.Arguments>
-              <scg:List x:TypeArguments="ui:JoinOperationArgument" Capacity="4">
-                <ui:JoinOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EQ">
-                  <ui:JoinOperationArgument.Column1>
-                    <InArgument x:TypeArguments="x:String">["Case Number"]</InArgument>
-                  </ui:JoinOperationArgument.Column1>
-                  <ui:JoinOperationArgument.Column2>
-                    <InArgument x:TypeArguments="x:String">["Case Number"]</InArgument>
-                  </ui:JoinOperationArgument.Column2>
-                </ui:JoinOperationArgument>
-              </scg:List>
-            </ui:JoinDataTables.Arguments>
-          </ui:JoinDataTables>
-          <Assign sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_2">
-            <Assign.To>
-              <OutArgument x:TypeArguments="sd:DataColumn[]">[tempDataTable.PrimaryKey]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="sd:DataColumn[]">[New DataColumn() {tempDataTable.Columns("ID")}]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_3">
-            <Assign.To>
-              <OutArgument x:TypeArguments="sd:DataColumn[]">[FinalDataTable.PrimaryKey]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="sd:DataColumn[]">[New DataColumn() {FinalDataTable.Columns("ID")}]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,305" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+          <ui:MergeDataTable Destination="[FinalDataTable]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="MergeDataTable_2" MissingSchemaAction="Add" Source="[tempDataTable]" />
+          <ui:ClearDataTable DataTable="[tempDataTable]" DisplayName="Clear Data Table" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="ClearDataTable_1" />
+          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="CommentOut_1">
             <ui:CommentOut.Body>
-              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="280,227" sap2010:WorkflowViewState.IdRef="Sequence_11">
+              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="304,427" sap2010:WorkflowViewState.IdRef="Sequence_11">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="238,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Merge">
+                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="sd:DataColumn[]">[tempDataTable.PrimaryKey]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="sd:DataColumn[]">[New DataColumn() {tempDataTable.Columns("ID")}]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="sd:DataColumn[]">[FinalDataTable.PrimaryKey]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="sd:DataColumn[]">[New DataColumn() {FinalDataTable.Columns("ID")}]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="262,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Merge">
                   <InvokeMethod.TargetObject>
                     <InArgument x:TypeArguments="sd:DataTable">[FinalDataTable]</InArgument>
                   </InvokeMethod.TargetObject>
-                  <InArgument x:TypeArguments="sd:DataTable">
-                    <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="tempDataTable" />
-                  </InArgument>
+                  <InArgument x:TypeArguments="sd:DataTable">[tempDataTable]</InArgument>
                 </InvokeMethod>
               </Sequence>
             </ui:CommentOut.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
           </ui:CommentOut>
-          <Assign sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
             <Assign.To>
               <OutArgument x:TypeArguments="s:DateTime">[afterDate]</OutArgument>
             </Assign.To>
@@ -217,8 +212,20 @@
           </Assign>
         </Sequence>
       </ui:InterruptibleDoWhile.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:InterruptibleDoWhile>
-    <ui:OutputDataTable DataTable="[FinalDataTable]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="514,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_3" Text="[data]" />
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="514,61" sap2010:WorkflowViewState.IdRef="WriteLine_7" Text="[&quot;data from current day is &quot;+data]" />
+    <Assign sap:VirtualizedContainerService.HintSize="412,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[out_Data]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable">[FinalDataTable.AsEnumerable().GroupBy(Function(i) i.Field(Of String)(“Case Number”)).Select(Function(g) g.First).CopyToDataTable]</InArgument>
+      </Assign.Value>
+    </Assign>
   </Sequence>
 </Activity>

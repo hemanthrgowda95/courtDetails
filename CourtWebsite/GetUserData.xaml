@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>792,1535</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>810,1535</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>EnterFilters_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="27">
@@ -67,6 +67,8 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="EnterFilters" sap:VirtualizedContainerService.HintSize="376,1470" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -81,7 +83,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InputDialog OptionsString="{x:Null}" DisplayName="Input Dialog county" sap:VirtualizedContainerService.HintSize="334,291" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Please Select County or Court" Options="[{&quot;Appellate Courts&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;}]" Title="County or Court">
+    <ui:InputDialog OptionsString="{x:Null}" DisplayName="Input Dialog county" sap:VirtualizedContainerService.HintSize="334,291" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Please Select County or Court" Options="[{&quot;Appellate Courts&quot;,&quot;Oklahoma County District Court&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;}]" Title="County or Court">
       <ui:InputDialog.Result>
         <OutArgument x:TypeArguments="x:String">[out_CourtSelected]</OutArgument>
       </ui:InputDialog.Result>
